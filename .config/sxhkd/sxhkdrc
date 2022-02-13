@@ -28,6 +28,10 @@ super + shift + d
 super + x
      ~/.config/rofi/powermenu.sh
 
+# network menu
+super + shift + n
+    ~/Repos/rofi-network-manager/rofi-network-manager.sh
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
