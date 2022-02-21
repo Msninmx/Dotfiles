@@ -117,6 +117,23 @@ return packer.startup(function(use)
     run = ":ColorizerAttachToBuffer",
   }
 
+  -- Fix treesitter indentation
+  use {
+    "yioneko/nvim-yati",
+    requires = "nvim-treesitter/nvim-treesitter"
+  }
+
+  -- TODO: higlighting
+  -- NOTE: REMEMBER TO USE :!!!
+  use {
+    "AmeerTaweel/todo.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo").setup {
+
+      }
+    end
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

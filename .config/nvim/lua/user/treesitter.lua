@@ -20,4 +20,7 @@ configs.setup {
     enable = true,
     enable_autocmd = false,
   },
+
+  -- Improved indenting
+  yati = { enable = true },
 }
