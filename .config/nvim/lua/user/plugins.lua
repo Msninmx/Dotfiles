@@ -113,8 +113,7 @@ return packer.startup(function(use)
   -- Show Colors
   use {
     "norcalli/nvim-colorizer.lua",
-    event = "BufRead",
-    run = ":ColorizerAttachToBuffer",
+    require 'colorizer'.setup()
   }
 
   -- Fix treesitter indentation
