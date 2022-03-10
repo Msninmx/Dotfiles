@@ -129,9 +129,13 @@ return packer.startup(function(use)
     requires = "nvim-lua/plenary.nvim",
     config = function()
       require("todo").setup {
-
       }
     end
+  }
+
+  -- LaTeX Support
+  use {
+    "lervag/vimtex"
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
