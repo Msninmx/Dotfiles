@@ -106,12 +106,14 @@ cmp.setup {
         buffer = "[Buffer]",
         path = "[Path]",
         cmp_tabnine = "[TN]",
+        -- copilot = "[Copilot]",
       })[entry.source.name]
       return vim_item
     end,
   },
   sources = {
     { name = "cmp_tabnine" },
+    -- { name = "copilot" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
     { name = "buffer" },

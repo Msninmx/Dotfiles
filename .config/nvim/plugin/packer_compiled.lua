@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/migueln/.local/share/nvim/site/pack/packer/start/cmp-cmdline",
     url = "https://github.com/hrsh7th/cmp-cmdline"
   },
+  ["cmp-copilot"] = {
+    loaded = true,
+    path = "/home/migueln/.local/share/nvim/site/pack/packer/start/cmp-copilot",
+    url = "https://github.com/hrsh7th/cmp-copilot"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/home/migueln/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
