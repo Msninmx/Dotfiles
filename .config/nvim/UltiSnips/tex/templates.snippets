@@ -1,0 +1,18 @@
+snippet template "Basic template" b
+\documentclass{article}
+\usepackage{../default}
+
+\title{$1}
+\author{Miguel Nguyen}
+\date{`date +%B\ %Y`}
+
+\begin{document}
+	\maketitle
+
+	$0
+\end{document}
+endsnippet
+
+snippet pac "Package" b
+\usepackage[${1:options}]{${2:package}}$0
+endsnippet

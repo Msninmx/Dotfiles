@@ -1,0 +1,221 @@
+global !p
+def math():
+  return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+endglobal
+
+# Fractions and roots
+context "math()"
+snippet // "Empty Fraction" iA
+\\frac{$1}{$2}$0
+endsnippet
+
+snippet / "Convert to Fraction" i
+\\frac{${VISUAL}}{$1}$0
+endsnippet
+
+context "math()"
+snippet '((\d+)|(\d*)(\\)?([A-Za-z]+)((\^|_)(\{\d+\}|\d))*)/' "Filled Fraction" wrA
+\\frac{`!p snip.rv = match.group(1)`}{$1}$0
+endsnippet
+
+priority 1000
+context "math()"
+snippet '^.*\)/' "Fraction with parenthesis" wrA
+`!p
+stripped = match.string[:-1]
+depth = 0
+i = len(stripped) - 1
+while True:
+	if stripped[i] == ')': depth += 1
+	if stripped[i] == '(': depth -= 1
+	if depth == 0: break;
+	i-=1
+snip.rv = stripped[0:i] + "\\frac{" + stripped[i+1:-1] + "}"
+`{$1}$0
+endsnippet
+
+context "math()"
+snippet "([^a-zA-Z\\])sq" "\sqrt (square root)" rA
+`!p snip.rv = match.group(1)`\sqrt{${1:${VISUAL:}}}$0
+endsnippet
+
+context "math()"
+snippet "([^a-zA-Z\\])nsq" "nth root" rA
+`!p snip.rv = match.group(1)`\sqrt[$1]{$2}$0
+endsnippet
+
+# Subscripts and Superscripts
+context "math()"
+snippet '([A-Za-z])(\d)' "Single digit subscript" wrA
+`!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
+endsnippet
+
+context "math()"
+snippet '([A-Za-z])_(\d\d)' "Double digit subscript" wrA
+`!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
+endsnippet
+
+context "math()"
+snippet sr "Squared" iA
+^2
+endsnippet
+
+context "math()"
+snippet cb "Cubed" iA
+^3
+endsnippet
+
+context "math()"
+snippet compl "Complement" iA
+^{c}
+endsnippet
+
+context "math()"
+snippet "([^a-zA-Z])ee" "e^{} supercript" rA
+`!p snip.rv = match.group(1)`e^{${1:${VISUAL:}}}$0
+endsnippet
+
+snippet td "Empty superscript" iA
+^{$1}$0
+endsnippet
+
+# Opening and closing delimiters
+context "math()"
+snippet () "left( right)" iA
+\left( ${1:${VISUAL}} \right) $0
+endsnippet
+
+context "math()"
+snippet () "left[ right]" iA
+\left[ ${1:${VISUAL}} \right] $0
+endsnippet
+
+# Symbols
+snippet ooo "\infty" iA
+\infty
+endsnippet
+
+snippet <= "leq" iA
+\le
+endsnippet
+
+snippet >= "geq" iA
+\ge
+endsnippet
+
+snippet ... "Dots" iA
+\dots
+endsnippet
+
+context "math()"
+snippet xx "cross" iA
+\times 
+endsnippet
+
+priority 100
+snippet ** "cdot" iA
+\cdot 
+endsnippet
+
+snippet iv "i hat" iA
+\hat{\imath}
+endsnippet
+
+snippet jv "j hat" iA
+\hat{\jmath}
+endsnippet
+
+# X and Y
+context "math()"
+snippet xnn "xn" iA
+x_{n}
+endsnippet
+
+context "math()"
+snippet ynn "yn" iA
+y_{n}
+endsnippet
+
+
+context "math()"
+snippet xii "xi" iA
+x_{i}
+endsnippet
+
+context "math()"
+snippet yii "yi" iA
+y_{i}
+endsnippet
+
+context "math()"
+snippet xjj "xj" iA
+x_{j}
+endsnippet
+
+context "math()"
+snippet yjj "yj" iA
+y_{j}
+endsnippet
+
+context "math()"
+snippet xp1 "x" iA
+x_{n+1}
+endsnippet
+
+context "math()"
+snippet xmm "x" iA
+x_{m}
+endsnippet
+
+# Integrals
+snippet "([^\w\\])intt" "Integral with upper and lower limit" rA
+`!p snip.rv = match.group(1)`\int_{$1}^{$2} $0
+endsnippet
+
+snippet "([^\w\\])innt" "Integral with symmetric upper and lower limit" rA
+`!p snip.rv = match.group(1)`\int_{-$1}^{$1} $0
+endsnippet
+
+snippet "([^\w\\])int3" "\iiint" rA
+`!p snip.rv = match.group(1)`\iiint
+endsnippet
+
+snippet "([^\w\\])int2" "\iint" rA
+`!p snip.rv = match.group(1)`\iint
+endsnippet
+
+# Sums
+context "math()"
+snippet "([^\w\\])sM" "Sum with only lower limit" rA
+`!p snip.rv = match.group(1)`\sum_{$1}$0
+endsnippet
+
+context "math()"
+snippet "([^\w\\])smm" "Sum with upper and lower limit" rA
+`!p snip.rv = match.group(1)`\sum_{$1}^{$2}$0
+endsnippet
+
+snippet "([^\w\\])smf" "Sum from negative to positive infinity" rA
+`!p snip.rv = match.group(1)`\sum_{$1-\infty}^{\infty} $0
+endsnippet
+
+context "math()"
+snippet "([^\w\\])lsM" "Inline math sum with only lower limit" rA
+`!p snip.rv = match.group(1)`\sum \limits_{$1}$0
+endsnippet
+
+context "math()"
+snippet "([^\w\\])lsmm" "Inline math sum with upper and lower limit" rA
+`!p snip.rv = match.group(1)`\sum \limits_{$1}^{$2}$0
+endsnippet
+
+# Limits
+context "math()"
+snippet "([^\w\\])lM" "\limits{} with only lower limit" rA
+`!p snip.rv = match.group(1)`\limits_{$1}$0
+endsnippet
+
+context "math()"
+snippet "([^\w\\])lmm" "\limits{}{} with upper and lower limit" rA
+`!p snip.rv = match.group(1)`\limits_{$1}{$2}$0
+endsnippet

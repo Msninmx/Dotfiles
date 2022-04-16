@@ -34,6 +34,11 @@ local kind_icons = {
 -- find more here: https://www.nerdfonts.com/cheat-sheet
 
 cmp.setup {
+  snippet = {
+    expand = function(args)
+      vim.fn["UltiSnips#Anon"](args.body)
+    end,
+  },
   mapping = cmp.mapping.preset.insert({
     ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
@@ -61,7 +66,7 @@ cmp.setup {
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
-        -- luasnip = "[Snippet]",
+        ultisnips = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
         cmp_tabnine = "[TN]",
@@ -72,8 +77,8 @@ cmp.setup {
   sources = {
     { name = "cmp_tabnine" },
     { name = "nvim_lsp" },
-    -- { name = "luasnip" },
     { name = "buffer" },
+    { name = "ultisnips" },
     { name = "path" },
   },
   confirm_opts = {
@@ -86,7 +91,7 @@ cmp.setup {
     },
   },
   experimental = {
-    ghost_text = false,
+    ghost_text = true,
     native_menu = false,
   },
 }

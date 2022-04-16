@@ -69,8 +69,8 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-buffer" -- buffer completions
   use "hrsh7th/cmp-path" -- path completions
   use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  -- use "quangnguyen30192/cmp-nvim-ultisnips"
+  -- use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "quangnguyen30192/cmp-nvim-ultisnips"
   use "hrsh7th/cmp-nvim-lsp"
 
   -- Tabnine Completion
@@ -84,7 +84,7 @@ return packer.startup(function(use)
   -- snippets
   -- use "L3MON4D3/LuaSnip" --snippet engine
   -- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
-  -- use "SirVer/ultisnips"
+  use "SirVer/ultisnips"
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP

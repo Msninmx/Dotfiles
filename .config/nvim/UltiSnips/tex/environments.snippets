@@ -1,0 +1,28 @@
+snippet env "New LaTeX environment" b
+\begin{$1}
+    $2
+\end{$1}
+$0
+endsnippet
+
+snippet mk "Math" wA
+\(${1}\)`!p
+if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
+    snip.rv = ' '
+else:
+    snip.rv = ''
+`$2
+endsnippet
+
+snippet dm "Math" wA
+\[
+${1:${VISUAL}}
+.\] $0
+endsnippet
+
+snippet all "Align environment with suppressed numbering" bA
+\begin{align*}
+	$1
+\end{align*}
+$0
+endsnippet
