@@ -3,7 +3,7 @@ def math():
   return vim.eval('vimtex#syntax#in_mathzone()') == '1'
 endglobal
 
-# Fractions and roots
+# Fractions, roots, and binoms
 context "math()"
 snippet // "Empty Fraction" iA
 \\frac{$1}{$2}$0
@@ -44,6 +44,11 @@ snippet "([^a-zA-Z\\])nsq" "nth root" rA
 `!p snip.rv = match.group(1)`\sqrt[$1]{$2}$0
 endsnippet
 
+context "math()"
+snippet "([^a-zA-Z\\])bnm" "\binom" rA
+`!p snip.rv = match.group(1)`\binom{$1}{$2}$0
+endsnippet
+
 # Subscripts and Superscripts
 context "math()"
 snippet '([A-Za-z])(\d)' "Single digit subscript" wrA
@@ -56,6 +61,11 @@ snippet '([A-Za-z])_(\d\d)' "Double digit subscript" wrA
 endsnippet
 
 context "math()"
+snippet "([\w]|[\}\)\]\|'])sd" "Text subscript" rA
+`!p snip.rv = match.group(1)`_{\mathrm{${1:${VISUAL:}}}}$0
+endsnippet
+context "math()"
+
 snippet sr "Squared" iA
 ^2
 endsnippet
@@ -79,15 +89,29 @@ snippet td "Empty superscript" iA
 ^{$1}$0
 endsnippet
 
+snippet sb "Empty subscript" iA
+_{$1}$0
+endsnippet
+
 # Opening and closing delimiters
 context "math()"
-snippet () "left( right)" iA
+snippet lpr "left( right)" iA
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
 context "math()"
-snippet () "left[ right]" iA
+snippet lbr "left[ right]" iA
 \left[ ${1:${VISUAL}} \right] $0
+endsnippet
+
+context "math()"
+snippet lcr "left{ right}" iA
+\left{ ${1:${VISUAL}} \right} $0
+endsnippet
+
+context "math()"
+snippet <> "left< right>" iA
+\left\langle ${1:${VISUAL}} \right\rangle $0
 endsnippet
 
 # Symbols
@@ -103,7 +127,7 @@ snippet >= "geq" iA
 \ge
 endsnippet
 
-snippet ... "Dots" iA
+snippet dots "Dots" iA
 \dots
 endsnippet
 
@@ -117,12 +141,36 @@ snippet ** "cdot" iA
 \cdot 
 endsnippet
 
+context "math()"
+snippet ast "* ast" iA
+\ast
+endsnippet
+
+context "math()"
+snippet pm "\pm" iA
+\pm
+endsnippet
+
 snippet iv "i hat" iA
 \hat{\imath}
 endsnippet
 
 snippet jv "j hat" iA
 \hat{\jmath}
+endsnippet
+
+snippet neq "\neq" iA
+\neq
+endsnippet
+
+context "math()"
+snippet dd "Derivative d" iA
+\mathrm{d}
+endsnippet
+
+context "math()"
+snippet pdd "Partial derivative" iA
+\partial
 endsnippet
 
 # X and Y
@@ -135,7 +183,6 @@ context "math()"
 snippet ynn "yn" iA
 y_{n}
 endsnippet
-
 
 context "math()"
 snippet xii "xi" iA
@@ -158,7 +205,7 @@ y_{j}
 endsnippet
 
 context "math()"
-snippet xp1 "x" iA
+snippet 1xp "x" iA
 x_{n+1}
 endsnippet
 
@@ -176,18 +223,27 @@ snippet "([^\w\\])innt" "Integral with symmetric upper and lower limit" rA
 `!p snip.rv = match.group(1)`\int_{-$1}^{$1} $0
 endsnippet
 
-snippet "([^\w\\])int3" "\iiint" rA
+snippet "([^\w\\])iiint" "\iiint" rA
 `!p snip.rv = match.group(1)`\iiint
 endsnippet
 
-snippet "([^\w\\])int2" "\iint" rA
+snippet "([^\w\\])iint" "\iint" rA
 `!p snip.rv = match.group(1)`\iint
+endsnippet
+
+snippet "([^\w\\])oint" "\oint" rA
+`!p snip.rv = match.group(1)`\oint_C
 endsnippet
 
 # Sums
 context "math()"
 snippet "([^\w\\])sM" "Sum with only lower limit" rA
 `!p snip.rv = match.group(1)`\sum_{$1}$0
+endsnippet
+
+context "math()"
+snippet "([^\w\\])prod" "Product with only lower limit" rA
+`!p snip.rv = match.group(1)`\prod_{$1}$0
 endsnippet
 
 context "math()"
@@ -218,4 +274,56 @@ endsnippet
 context "math()"
 snippet "([^\w\\])lmm" "\limits{}{} with upper and lower limit" rA
 `!p snip.rv = match.group(1)`\limits_{$1}{$2}$0
+endsnippet
+
+# Text functions
+context "math()"
+snippet sin "\sin" iA
+\sin
+endsnippet
+
+context "math()"
+snippet cos "\cos" iA
+\cos
+endsnippet
+
+context "math()"
+snippet tan "\tan" iA
+\tan
+endsnippet
+
+context "math()"
+snippet log "\log" iA
+\log
+endsnippet
+
+context "math()"
+snippet ln "\ln" iA
+\ln
+endsnippet
+
+context "math()"
+snippet exp "\exp" iA
+\exp
+endsnippet
+
+# Derivatives
+context "math()"
+snippet edv "Empty Derivative" iA
+\frac{\mathrm{d}}{$1}$0
+endsnippet
+
+context "math()"
+snippet Dv "Derivative" iA
+\frac{\mathrm{d}$1}{$2}$0
+endsnippet
+
+context "math()"
+snippet epdv "Empty Partial Derivative" iA
+\frac{\partial}{\partial $1}$0
+endsnippet
+
+context "math()"
+snippet Pdv "Partial Derivative" iA
+\frac{\partial $1}{\partial $2}$0
 endsnippet

@@ -1,3 +1,4 @@
+# Generic environment
 snippet env "New LaTeX environment" b
 \begin{$1}
     $2
@@ -5,8 +6,9 @@ snippet env "New LaTeX environment" b
 $0
 endsnippet
 
+# Math modes
 snippet mk "Math" wA
-\(${1}\)`!p
+\(${1:${VISUAL}}\)`!p
 if t[2] and t[2][0] not in [',', '.', '?', '-', ' ']:
     snip.rv = ' '
 else:
@@ -20,9 +22,23 @@ ${1:${VISUAL}}
 .\] $0
 endsnippet
 
+# Environments
 snippet all "Align environment with suppressed numbering" bA
 \begin{align*}
 	$1
 \end{align*}
 $0
+endsnippet
+
+snippet case "Cases environment" bA
+\begin{cases}
+	$1
+\end{cases}$0
+endsnippet
+
+# Matrices
+snippet pm "Parentheses matrix pmatrix" bA
+\begin{pmatrix}
+	$1
+\end{pmatrix}$0
 endsnippet
