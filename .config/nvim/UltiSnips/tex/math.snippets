@@ -137,7 +137,7 @@ snippet xx "cross" iA
 endsnippet
 
 priority 100
-snippet ** "cdot" iA
+snippet cdot "cdot" iA
 \cdot 
 endsnippet
 
@@ -151,10 +151,12 @@ snippet pm "\pm" iA
 \pm
 endsnippet
 
+context "math()"
 snippet iv "i hat" iA
 \hat{\imath}
 endsnippet
 
+context "math()"
 snippet jv "j hat" iA
 \hat{\jmath}
 endsnippet
@@ -327,3 +329,9 @@ context "math()"
 snippet Pdv "Partial Derivative" iA
 \frac{\partial $1}{\partial $2}$0
 endsnippet
+
+# Units
+snippet qty "SI Unit Indicator" iA
+\qty{$1}{\\$2}$0
+endsnippet
+
