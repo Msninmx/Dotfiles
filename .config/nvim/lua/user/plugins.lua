@@ -142,6 +142,9 @@ return packer.startup(function(use)
     "lervag/vimtex"
   }
 
+  -- Context
+  use { "lukas-reineke/virt-column.nvim" }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

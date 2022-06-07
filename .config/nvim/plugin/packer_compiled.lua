@@ -266,6 +266,11 @@ _G.packer_plugins = {
     path = "/home/migueln/.local/share/nvim/site/pack/packer/start/vimtex",
     url = "https://github.com/lervag/vimtex"
   },
+  ["virt-column.nvim"] = {
+    loaded = true,
+    path = "/home/migueln/.local/share/nvim/site/pack/packer/start/virt-column.nvim",
+    url = "https://github.com/lukas-reineke/virt-column.nvim"
+  },
   ["which-key.nvim"] = {
     loaded = true,
     path = "/home/migueln/.local/share/nvim/site/pack/packer/start/which-key.nvim",
