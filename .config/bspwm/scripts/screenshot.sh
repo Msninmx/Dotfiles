@@ -13,7 +13,7 @@ case $selected in
     $option0)
         cd ~/Pictures/ && sleep 1 && scrot;;
     $option1)
-        cd ~/Pictures/ && scrot -s;;
+        cd ~/Pictures/ && sleep 0.3 && scrot -fs;;
     $option2)
         cd ~/Pictures/ && sleep 1 && scrot -u;;
 esac
